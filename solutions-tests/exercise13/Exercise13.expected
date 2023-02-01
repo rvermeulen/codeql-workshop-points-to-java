@@ -1,0 +1,21 @@
+| Test.java:21:19:21:26 | o | Test.java:71:11:71:17 | new B(...) |
+| Test.java:21:19:21:26 | o | Test.java:72:11:72:17 | new C(...) |
+| Test.java:35:5:35:18 | A a | Test.java:35:11:35:17 | new A(...) |
+| Test.java:36:5:36:18 | B b | Test.java:36:11:36:17 | new B(...) |
+| Test.java:40:5:40:18 | A a | Test.java:40:11:40:17 | new A(...) |
+| Test.java:40:5:40:18 | A a | Test.java:41:11:41:17 | new B(...) |
+| Test.java:41:5:41:18 | B b | Test.java:41:11:41:17 | new B(...) |
+| Test.java:46:5:46:18 | C c | Test.java:46:11:46:17 | new C(...) |
+| Test.java:47:5:47:18 | A a | Test.java:47:11:47:17 | new A(...) |
+| Test.java:52:5:52:18 | C c | Test.java:52:11:52:17 | new C(...) |
+| Test.java:53:5:53:18 | B b | Test.java:53:11:53:17 | new B(...) |
+| Test.java:55:5:55:8 | A a | Test.java:53:11:53:17 | new B(...) |
+| Test.java:61:5:61:18 | C c | Test.java:61:11:61:17 | new C(...) |
+| Test.java:62:5:62:18 | D d | Test.java:62:11:62:17 | new D(...) |
+| Test.java:63:5:63:18 | E e | Test.java:63:11:63:17 | new E(...) |
+| Test.java:70:5:70:23 | Object a | Test.java:70:16:70:22 | new A(...) |
+| Test.java:70:5:70:23 | Object a | Test.java:71:11:71:17 | new B(...) |
+| Test.java:70:5:70:23 | Object a | Test.java:72:11:72:17 | new C(...) |
+| Test.java:71:5:71:18 | B b | Test.java:71:11:71:17 | new B(...) |
+| Test.java:72:5:72:18 | C c | Test.java:72:11:72:17 | new C(...) |
+| Test.java:73:5:73:18 | F f | Test.java:73:11:73:17 | new F(...) |

@@ -1,0 +1,9 @@
+| Test.java:5:7:5:7 | C | foo() | Test.java:8:8:8:10 | foo |
+| Test.java:11:7:11:7 | D | bar() | Test.java:12:8:12:10 | bar |
+| Test.java:15:7:15:7 | E | foo() | Test.java:16:8:16:10 | foo |
+| Test.java:19:7:19:10 | Test | alloc() | Test.java:28:22:28:26 | alloc |
+| Test.java:19:7:19:10 | Test | call() | Test.java:54:22:54:25 | call |
+| Test.java:19:7:19:10 | Test | load() | Test.java:45:22:45:25 | load |
+| Test.java:19:7:19:10 | Test | main(java.lang.String[]) | Test.java:20:22:20:25 | main |
+| Test.java:19:7:19:10 | Test | move() | Test.java:33:22:33:25 | move |
+| Test.java:19:7:19:10 | Test | store() | Test.java:39:22:39:26 | store |
