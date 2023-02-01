@@ -1,0 +1,5 @@
+| Test.java:12:5:12:18 | A a | Test.java:12:11:12:17 | new A(...) |
+| Test.java:13:5:13:18 | B b | Test.java:13:11:13:17 | new B(...) |
+| Test.java:17:5:17:18 | A a | Test.java:17:11:17:17 | new A(...) |
+| Test.java:17:5:17:18 | A a | Test.java:18:11:18:17 | new B(...) |
+| Test.java:18:5:18:18 | B b | Test.java:18:11:18:17 | new B(...) |

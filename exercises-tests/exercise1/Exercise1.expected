@@ -1,0 +1,2 @@
+| Test.java:9:11:9:17 | new A(...) |
+| Test.java:10:11:10:17 | new B(...) |

@@ -1,0 +1,10 @@
+| Test.java:18:5:18:18 | A a | Test.java:18:11:18:17 | new A(...) |
+| Test.java:19:5:19:18 | B b | Test.java:19:11:19:17 | new B(...) |
+| Test.java:23:5:23:18 | A a | Test.java:23:11:23:17 | new A(...) |
+| Test.java:23:5:23:18 | A a | Test.java:24:11:24:17 | new B(...) |
+| Test.java:24:5:24:18 | B b | Test.java:24:11:24:17 | new B(...) |
+| Test.java:29:5:29:18 | C c | Test.java:29:11:29:17 | new C(...) |
+| Test.java:30:5:30:18 | A a | Test.java:30:11:30:17 | new A(...) |
+| Test.java:35:5:35:18 | C c | Test.java:35:11:35:17 | new C(...) |
+| Test.java:36:5:36:18 | B b | Test.java:36:11:36:17 | new B(...) |
+| Test.java:38:5:38:8 | A a | Test.java:36:11:36:17 | new B(...) |
