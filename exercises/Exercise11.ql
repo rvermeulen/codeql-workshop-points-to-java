@@ -58,7 +58,7 @@ predicate callGraph(MethodAccess methodAccess, Method method) {
 
 predicate interproceduralAssign(LocalScopeVariable src, LocalScopeVariable dest) {
   exists(Method method, MethodAccess methodAccess, int index |
-    // Exercise 11: Associate the method call arguments with the called method paramters.
+    // Exercise 11: Associate the method call arguments with the called method parameters.
     any()
   )
 }
