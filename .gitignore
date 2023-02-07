@@ -1,2 +1,4 @@
 # CodeQL query cache
 .cache
+# CodeQL test databases
+*.testproj
