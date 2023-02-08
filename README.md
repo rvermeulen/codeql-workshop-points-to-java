@@ -1,5 +1,7 @@
 # CodeQL workshop - Elements of Syntactical Program Analysis for Java
 
+## Introduction
+
 This workshop is an introduction to identifying syntactical elements using QL by implementing a basic Andersen style points-to analysis[^1].
 A points-to analysis is a [pointer analysis](https://en.wikipedia.org/wiki/Pointer_analysis) that statically determines the set of object a variable can point to and provides information that can be used to improve the accuracy of other analyses such as computing a call-graph.
 For example, consider the following Java snippet. How do we determine which `foo` method is called?
@@ -37,16 +39,63 @@ We will follow the declarative formulation of the basic points-to analysis as fo
 [^1]:  Lars O. Andersen. Program Analysis and Specialization of the C Programming Language. PhD thesis, DIKU, University of Copenhagen, 1994.
 [^2]: Smaragdakis, Yannis and Balatsouras, George. Pointer Analysis. Found. Trends Program. Lang. 2015.
 
+## Representing programs
+
+This workshops focuses on reasoning about syntactical elements.
+Reasoning about syntactical elements means that we work with a representation of source code.
+The representation used by CodeQL is called an [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)(AST).
+It is a tree representation that captures the *parent/child* relationship of program elements in the source code and elides concrete syntax elements that do not or are no longer necessary once the *parent/child* relationship is established.
+An example of concrete syntax that is commonly elided are parenthesis used to define precedence within expression `(expression) op expression `.
+The parentheses are required in a linear representation such as text, but are not necessary in a tree representation such as an AST.
+
+The AST for the following expression demonstrates this.
+For the expression `(a + b) * c` we have the following corresponding AST:
+
+```
+                  .─.
+                 ( * )
+                  `─'
+            ┌────────────┐
+            │            │
+            ▼            ▼
+           .─.         ┌───┐
+          ( + )        │ c │
+           `─'         └───┘
+      ┌───────────┐
+      ▼           ▼
+    ┌───┐       ┌───┐
+    │ a │       │ b │
+    └───┘       └───┘
+```
+
+The AST captures the relationships between the operators and the operands and there is no ambiguity for the precedence of the operations.
+When working with QL, the *parent/child* relationships are made available in a more meaningful way through the QL classes in the standard library.
+For binary expression, for example, we talk about operands and for method calls we talk about arguments instead of children.
+However, if you peek into their definitions, like for the `BinaryExpr` member predicate `[getLeftOperand](https://github.com/github/codeql/blob/main/java/ql/lib/semmle/code/java/Expr.qll#L731)` you can see it relies on the *parent/child` relationship captured by the AST with the `isNthChildOf` predicate.
+
+To explore the AST representation of a Java class you can use the AST viewer functionality available in the Visual Code CodeQL extension.
+With a selected database, select a Java file in the Visual Studio Code Explorer in the folder that is added to the workspace when selecting a database, and click on the *View AST* button in the AST view in the CodeQL view found on the Visual Studio Code [Activity Bar](https://code.visualstudio.com/docs/getstarted/userinterface#_basic-layout).
+Alternatively, you can right-click in the Editor and run the command *CodeQL: View AST*.
+
 ## Exercises
+
+The following exercises incrementally implement a naive points-to implementation by syntactically describing program elements.
+Each exercise is accompanied by a QL test that you can run to test your solution.
+The tests are available through the Testing view or can be executed via the terminal using the `codeql test run <path-to-test>` command.
+
+For example, to run the test for exercise 1 run `codeql test run exercises-tests/exercise1` in a terminal at the root of this repository.
+
+When a test fails it will show you the difference between the actual output of your query and the expected output. For a failed test the test database is kept so you can select it for debugging your query.
+
+Solutions for each exercise are provided in the `solutions` directory.
 
 ### Exercise 1
 
 To determine the objects where variables can point to, we first need to describe what an object is.
-During runtime a program can allocate multiple objects using the `new ...` expression.
-Since we are statically analyzing a program we need to approximate object allocation and represent objects by allocation size, that is the program location where an object is allocated using a `new ...` expression.
+During runtime a program can allocate multiple objects using the `new ...` expression at a single location in the program.
+Since we are statically analyzing a program we need to approximate object allocation and we do that by representing objects by their allocation size, that is the program location where an object is allocated using a `new ...` expression.
 
-Write a query to find all allocation size by looking for the `new ...` expression.
-To test your query run the test `exercises-tests/exercise1/Exercise1.qlref` via the Visual Studio Code test explorer or with the command `codeql test run exercises-tests/exercise1` in a terminal in the root of
+Write a query to find all allocation sites by looking for the `new ...` expression.
 
 <details>
 <summary>Hints</summary>
